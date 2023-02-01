@@ -1,0 +1,135 @@
+.calendar-page {
+    margin-top: 10em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 70em;
+}
+
+.calendar-container {
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #efefee;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.days {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+    font-weight: 700;
+    background-color: #eaf6f7;
+    color: #39a2a5;
+}
+
+.monday {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+    font-weight: 700;
+    background-color: #eaf6f7;
+    color: #39a2a5;
+    border-top-left-radius: 1em;
+}
+
+.sunday {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+    font-weight: 700;
+    background-color: #eaf6f7;
+    color: #39a2a5;
+    border-top-right-radius: 1em;
+}
+
+.dates {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #efefee;
+}
+
+.date-cell {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+}
+
+.cell-top-part {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+}
+
+.cell-bottom-part {
+    height: 100%;
+}
+
+.date {
+    margin-right: 7px;
+    margin-top: 5px;
+    width: 1.1em;
+    height: 1.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #efefee;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+.top-bar {
+    width: 100%;
+    height: 5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    margin-right: 6px;
+}
+
+.month-year {
+    font-weight: 700;
+    font-size: larger;
+    margin-left: 12px;
+}
+
+.nav-button {
+    margin: 6px;
+    padding: 4px;
+    padding-left: 9px;
+    padding-right: 9px;
+    align-items: center;
+    justify-content: center;
+    color: #39a2a5;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #efefee;
+    border-radius: 7px;
+}
