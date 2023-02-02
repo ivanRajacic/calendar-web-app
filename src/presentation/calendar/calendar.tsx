@@ -1,9 +1,10 @@
-import { startOfMonth, endOfMonth, differenceInDays, format } from 'date-fns';
+import { startOfMonth, endOfMonth, differenceInDays, format, addMonths } from 'date-fns';
 import { parse } from 'date-fns/esm';
-import { Navigate, redirect, useParams } from 'react-router-dom';
+import { Navigate, redirect, useNavigate, useParams } from 'react-router-dom';
 import './calendar.css'
-import Cell from './cell';
-import EmptyCell from './empty-cell';
+import Cell from './components/cell/cell';
+import EmptyCell from './components/empty-cell/empty-cell';
+
 
 const daysOfTheWeek = [
     "Monday",
@@ -17,15 +18,17 @@ const daysOfTheWeek = [
 
 
 const Calendar = () => {
+    const navigate = useNavigate();
     const params = useParams();
+    const formatString = 'MM-yyyy';
 
-    const currentDate = '/' + format(new Date(), 'MM-yyyy')
+    const currentDate = '/' + format(new Date(), formatString)
 
     if (params.date == undefined) {
         return (<Navigate to={currentDate} />);
     }
 
-    const date = parse(params.date, 'MM-yyyy', new Date());
+    const date = parse(params.date, formatString, new Date());
 
     if (isNaN(date.getTime())) {
         return (<Navigate to={currentDate} />);
@@ -41,14 +44,15 @@ const Calendar = () => {
     const month = format(date, 'LLLL');
     const year = date.getFullYear();
 
+
     return (
         <div className='calendar-page'>
             <div className='container'>
                 <div className='top-bar'>
                     <div className='month-year'>{month} {year}</div>
                     <div className='navigation'>
-                        <div className='nav-button'><div>{'<'}</div></div>
-                        <div className='nav-button'><div>{'>'}</div></div>
+                        <div className='nav-button' onClick={() => navigate("/" + format(addMonths(date, -1), formatString))}><div>{'<'}</div></div>
+                        <div className='nav-button' onClick={() => navigate("/" + format(addMonths(date, 1), formatString))}><div>{'>'}</div></div>
                     </div>
                 </div>
                 <div className="calendar-container">

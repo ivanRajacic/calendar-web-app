@@ -68,36 +68,6 @@
     border-color: #efefee;
 }
 
-.date-cell {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-rows: 1fr 3fr;
-}
-
-.cell-top-part {
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    align-items: center;
-}
-
-.cell-bottom-part {
-    height: 100%;
-}
-
-.date {
-    margin-right: 7px;
-    margin-top: 5px;
-    width: 1.1em;
-    height: 1.1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #efefee;
-    padding: 5px;
-    border-radius: 25px;
-}
 
 .top-bar {
     width: 100%;
@@ -132,4 +102,5 @@
     border-width: 1px;
     border-color: #efefee;
     border-radius: 7px;
+    cursor: pointer;
 }

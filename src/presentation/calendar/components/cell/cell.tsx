@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
-import './calendar.css';
-import { EventModel } from "../../data/models/event.model";
+import './cell.css'
+import { EventModel } from "../../../../data/models/event.model";
 
 
 interface Props extends React.PropsWithChildren {

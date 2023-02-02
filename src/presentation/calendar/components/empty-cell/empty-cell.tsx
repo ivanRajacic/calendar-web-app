@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import './calendar.css';
+import './empty-cell.css'
 
 interface Props extends React.PropsWithChildren {
     className?: string,
