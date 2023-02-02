@@ -1,28 +1,45 @@
 import { startOfMonth, endOfMonth, differenceInDays, format } from 'date-fns';
-import { arrayBuffer } from 'stream/consumers';
+import { parse } from 'date-fns/esm';
+import { Navigate, redirect, useParams } from 'react-router-dom';
 import './calendar.css'
 import Cell from './cell';
 import EmptyCell from './empty-cell';
 
 const daysOfTheWeek = [
-    "Monday", "Tuesday", "Wendsday", "Thursday", "Friday", "Saturday", "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wendsday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
 ];
 
-interface Props {
-    value?: Date;
-    onChange?: (value: Date) => void;
-}
 
-const Calendar: React.FC<Props> = ({ value = new Date(), onChange }) => {
-    const startDate = startOfMonth(value);
-    const endDate = endOfMonth(value);
+const Calendar = () => {
+    const params = useParams();
+
+    const currentDate = '/' + format(new Date(), 'MM-yyyy')
+
+    if (params.date == undefined) {
+        return (<Navigate to={currentDate} />);
+    }
+
+    const date = parse(params.date, 'MM-yyyy', new Date());
+
+    if (isNaN(date.getTime())) {
+        return (<Navigate to={currentDate} />);
+    }
+
+    const startDate = startOfMonth(date);
+    const endDate = endOfMonth(date);
     const numberOfDays = differenceInDays(endDate, startDate) + 1;
 
     const prefixDays = startDate.getDay();
     const suffixDays = 6 - endDate.getDay();
 
-    const month = format(value, 'LLLL');
-    const year = value.getFullYear();
+    const month = format(date, 'LLLL');
+    const year = date.getFullYear();
 
     return (
         <div className='calendar-page'>

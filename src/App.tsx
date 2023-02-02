@@ -6,12 +6,12 @@ import Calendar from './presentation/calendar/calendar';
 
 
 function App() {
-  const [currentDate, setCurrentDate] = useState(new Date());
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Calendar value={currentDate} onChange={setCurrentDate} />} />
+          {/* add home route that redirects to current date */}
+          <Route path='/:date' element={<Calendar />} />
         </Routes>
       </BrowserRouter>
     </div>
