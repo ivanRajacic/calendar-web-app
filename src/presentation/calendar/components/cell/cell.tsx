@@ -9,19 +9,19 @@ interface Props extends React.PropsWithChildren {
     event?: EventModel,
 };
 
-const Cell: React.FC<Props> = ({ index, className, children }) => {
+const Cell: React.FC<Props> = ({ index, className, children, event }) => {
     return (
         <div className={className}>
             <div className="date-cell">
                 <div className="cell-top-part">
                     {index && <div className="date">{index}</div>}
                 </div>
-                <div className="cell-bottom-part">
+                {event && <div className="cell-bottom-part">
                     <div className="event">
-                        <div className="event-title"></div>
-                        <div className="event-desc"></div>
+                        <div className="event-title">{event?.name}</div>
+                        <div className="event-desc">{event?.description}</div>
                     </div>
-                </div>
+                </div>}
             </div>
         </div>);
 };

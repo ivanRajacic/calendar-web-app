@@ -13,18 +13,46 @@
 }
 
 .cell-bottom-part {
-    height: 100%;
+    padding: 5px;
 }
 
 .date {
     margin-right: 7px;
     margin-top: 5px;
+    margin-bottom: 2px;
     width: 1.1em;
     height: 1.1em;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #efefee;
+    background-color: #f9f7f8;
     padding: 5px;
     border-radius: 25px;
+}
+
+.event {
+    background-color: #efeeee;
+    height: 100%;
+    border-radius: 7px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-title {
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: #39a2a5;
+    font-weight: 600;
+}
+
+.event-desc {
+    padding-left: 5px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    color: #39a2a5;
 }

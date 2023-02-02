@@ -1,6 +1,7 @@
 import { startOfMonth, endOfMonth, differenceInDays, format, addMonths } from 'date-fns';
 import { parse } from 'date-fns/esm';
 import { Navigate, redirect, useNavigate, useParams } from 'react-router-dom';
+import { EventModel } from '../../data/models/event.model';
 import './calendar.css'
 import Cell from './components/cell/cell';
 import EmptyCell from './components/empty-cell/empty-cell';
@@ -44,6 +45,21 @@ const Calendar = () => {
     const month = format(date, 'LLLL');
     const year = date.getFullYear();
 
+    const mock1: EventModel = {
+        id: 1,
+        day: 2,
+        name: 'Mock event',
+        description: 'Blablablablabla',
+    }
+
+    const mock2: EventModel = {
+        id: 2,
+        day: 21,
+        name: 'Mock event 2',
+        description: 'Blablablablabla 2',
+    }
+
+    const mocks: EventModel[] = [mock1, mock2];
 
     return (
         <div className='calendar-page'>
@@ -69,7 +85,7 @@ const Calendar = () => {
 
 
                         {Array.from({ length: prefixDays }).map((_, index) => (<Cell key={index} className='dates'></Cell>))}
-                        {Array.from({ length: numberOfDays }).map((_, index) => (<Cell key={index} index={index + 1} className='dates'></Cell>))}
+                        {Array.from({ length: numberOfDays }).map((_, index) => (<Cell key={index} index={index + 1} className='dates' event={mocks.filter((e) => e.day == index + 1)[0]}></Cell>))}
                         {Array.from({ length: suffixDays }).map((_, index) => (<Cell key={index} className='dates'></Cell>))}
                     </div>
                 </div>
