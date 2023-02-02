@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Calendar from './presentation/calendar/calendar';
+import Home from './presentation/home/home';
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/* add home route that redirects to current date */}
+          <Route path='/' element={<Home />} />
           <Route path='/:date' element={<Calendar />} />
         </Routes>
       </BrowserRouter>
