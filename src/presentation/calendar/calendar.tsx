@@ -1,6 +1,6 @@
 import { startOfMonth, endOfMonth, differenceInDays, format, addMonths } from 'date-fns';
 import { parse } from 'date-fns/esm';
-import { Navigate, redirect, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { EventModel } from '../../data/models/event.model';
 import './calendar.css'
 import Cell from './components/cell/cell';
