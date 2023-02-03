@@ -1,4 +1,4 @@
-import { startOfMonth, endOfMonth, differenceInDays, format, addMonths } from 'date-fns';
+import { startOfMonth, endOfMonth, differenceInDays, format, addMonths, parseISO } from 'date-fns';
 import { parse } from 'date-fns/esm';
 import { useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
@@ -101,7 +101,7 @@ const Calendar = () => {
 
 
                         {Array.from({ length: prefixDays }).map((_, index) => (<Cell key={index} className='dates'></Cell>))}
-                        {Array.from({ length: numberOfDays }).map((_, index) => (<Cell key={index} index={index + 1} className='dates' event={commits?.filter((gitCommit) => parse(gitCommit.commit.author.date, gitFormatString, new Date()).getDay() - 2 === index + 1)[0]}></Cell>))}
+                        {Array.from({ length: numberOfDays }).map((_, index) => (<Cell key={index} index={index + 1} className='dates' event={commits?.filter((gitCommit) => parseISO(gitCommit.commit.author.date).getDay() - 2 === index + 1)[0]}></Cell>))}
                         {Array.from({ length: suffixDays }).map((_, index) => (<Cell key={index} className='dates'></Cell>))}
                     </div>
                 </div>
