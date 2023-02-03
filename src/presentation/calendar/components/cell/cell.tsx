@@ -1,16 +1,18 @@
 import { useState } from "react";
 import './cell.css'
-import { EventModel } from "../../../../data/models/event.model";
 import EventDetailsModdal from "./components/event-details-modal";
+import { GitCommitInfo } from "../../../../data/models/commit.model";
+import { format } from "date-fns";
+import { parse } from 'date-fns/esm';
 
 
 interface Props extends React.PropsWithChildren {
     className?: string,
     index?: number,
-    event?: EventModel,
+    event?: GitCommitInfo,
 };
 
-const Cell: React.FC<Props> = ({ index, className, event }) => {
+const Cell: React.FC<Props> = ({ index, className, event: commit }) => {
     const [showModal, setShowModal] = useState(false);
 
     const handleClose = () => setShowModal(false);
@@ -21,14 +23,14 @@ const Cell: React.FC<Props> = ({ index, className, event }) => {
                 <div className="cell-top-part">
                     {index && <div className="date">{index}</div>}
                 </div>
-                {event &&
+                {commit &&
                     <div className="cell-bottom-part" onClick={() => setShowModal(true)}>
                         <div className="event">
-                            <div className="event-title">{event?.name}</div>
-                            <div className="event-desc">{event?.description}</div>
+                            <div className="event-title">{commit?.commit.message}</div>
+                            <div className="event-desc">{format(parse(commit?.commit.author.date, "yyyy-MM-dd'T'HH:mm:ss'Z'", new Date()), 'dd-mm-yyyy')}</div>
                         </div>
                     </div>}
-                {event && <EventDetailsModdal event={event} handleClose={handleClose} showModal={showModal} />}
+                {commit && <EventDetailsModdal event={commit} handleClose={handleClose} showModal={showModal} />}
             </div>
         </div>);
 };

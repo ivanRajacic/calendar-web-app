@@ -17,7 +17,6 @@
     top: 40%;
     left: 50%;
     transform: translate(-40%, -50%);
-    background-color: #eaf6f7;
     outline: none;
     border-radius: 1em;
     /* padding: 1em; */
@@ -26,7 +25,7 @@
 .event-details-container{
     display: grid;
     grid-template-rows: 1fr 4fr;
-    background-color: #efeeee;
+    background-color: white;
     height: 100%;
     width: 100%;
     border-radius: 1em;
@@ -72,6 +71,13 @@
 
 .desc{
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.event-date{
+    display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     padding-left: 1em;
@@ -81,6 +87,19 @@
     font-size: large;
     background-color: white;
     color: #39a2a5;
-    height: 100%;
+    width: 100%;
+}
+
+.author{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 1em;
+    padding-top: 1em;
+    height: 3em;
+    font-weight: 500;
+    font-size: large;
+    background-color: white;
+    color: #39a2a5;
     width: 100%;
 }

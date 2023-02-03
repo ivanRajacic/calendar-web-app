@@ -1,11 +1,11 @@
-import { EventModel } from '../../../../../data/models/event.model';
 import { Modal } from "react-overlays";
 import './event-details-modal.css';
+import { GitCommitInfo } from '../../../../../data/models/commit.model';
 
 interface Props extends React.PropsWithChildren {
     handleClose: () => void,
     showModal: boolean,
-    event: EventModel,
+    event: GitCommitInfo,
 };
 
 const EventDetailsModdal: React.FC<Props> = ({ handleClose, showModal, event }) => {
@@ -15,10 +15,13 @@ const EventDetailsModdal: React.FC<Props> = ({ handleClose, showModal, event }) 
         <Modal className="event-details" show={showModal} onHide={handleClose} renderBackdrop={renderBackdrop}>
             <div className="event-details-container">
                 <div className='event-top-bar'>
-                    <div className="title">{event?.name}</div>
+                    <div className="title">{event?.commit.message}</div>
                     <div className='close-button' onClick={handleClose}>X</div>
                 </div>
-                <div className="desc">{event?.description}</div>
+                <div className="desc">
+                    <div className="event-date">{event?.commit.author.date}</div>
+                    <div className="author">{event?.commit.author.name}</div>
+                </div>
             </div>
         </Modal>
     </div>)

@@ -9,6 +9,6 @@ export type Commit = {
     message: string,
 }
 
-export type GithubCommitInfo = {
+export type GitCommitInfo = {
     commit: Commit,
 }
