@@ -39,6 +39,7 @@
     grid-template-rows: 1fr 1fr;
     align-items: center;
     justify-content: left;
+    cursor: pointer;
 }
 
 .event-title {

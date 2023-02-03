@@ -25,7 +25,7 @@ const Calendar = () => {
 
     const currentDate = '/' + format(new Date(), formatString)
 
-    if (params.date == undefined) {
+    if (params.date === undefined) {
         return (<Navigate to={currentDate} />);
     }
 
@@ -75,9 +75,9 @@ const Calendar = () => {
                     <div className="calendar-grid">
                         {daysOfTheWeek.map((day, index) => {
                             var className = null;
-                            if (index == 0) {
+                            if (index === 0) {
                                 className = 'monday'
-                            } else if (index == 6) {
+                            } else if (index === 6) {
                                 className = 'sunday'
                             }
                             return (<EmptyCell key={day} className={className ?? 'days'} >{day}</EmptyCell>);
@@ -85,7 +85,7 @@ const Calendar = () => {
 
 
                         {Array.from({ length: prefixDays }).map((_, index) => (<Cell key={index} className='dates'></Cell>))}
-                        {Array.from({ length: numberOfDays }).map((_, index) => (<Cell key={index} index={index + 1} className='dates' event={mocks.filter((e) => e.day == index + 1)[0]}></Cell>))}
+                        {Array.from({ length: numberOfDays }).map((_, index) => (<Cell key={index} index={index + 1} className='dates' event={mocks.filter((e) => e.day === index + 1)[0]}></Cell>))}
                         {Array.from({ length: suffixDays }).map((_, index) => (<Cell key={index} className='dates'></Cell>))}
                     </div>
                 </div>

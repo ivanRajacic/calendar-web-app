@@ -14,12 +14,11 @@ const EventDetailsModdal: React.FC<Props> = ({ handleClose, showModal, event }) 
     return (<div>
         <Modal className="event-details" show={showModal} onHide={handleClose} renderBackdrop={renderBackdrop}>
             <div className="event-details-container">
-                <div className="event-details-title">
-                    {event?.name}
+                <div className='event-top-bar'>
+                    <div className="title">{event?.name}</div>
+                    <div className='close-button' onClick={handleClose}>X</div>
                 </div>
-                <div className="event-details-desc">
-                    {event?.description}
-                </div>
+                <div className="desc">{event?.description}</div>
             </div>
         </Modal>
     </div>)
