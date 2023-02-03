@@ -1,6 +1,7 @@
-import { CSSProperties } from "react";
+import { useState } from "react";
 import './cell.css'
 import { EventModel } from "../../../../data/models/event.model";
+import EventDetailsModdal from "./components/event-details-modal";
 
 
 interface Props extends React.PropsWithChildren {
@@ -9,19 +10,25 @@ interface Props extends React.PropsWithChildren {
     event?: EventModel,
 };
 
-const Cell: React.FC<Props> = ({ index, className, children, event }) => {
+const Cell: React.FC<Props> = ({ index, className, event }) => {
+    const [showModal, setShowModal] = useState(false);
+
+    const handleClose = () => setShowModal(false);
+
     return (
         <div className={className}>
             <div className="date-cell">
                 <div className="cell-top-part">
                     {index && <div className="date">{index}</div>}
                 </div>
-                {event && <div className="cell-bottom-part">
-                    <div className="event">
-                        <div className="event-title">{event?.name}</div>
-                        <div className="event-desc">{event?.description}</div>
-                    </div>
-                </div>}
+                {event &&
+                    <div className="cell-bottom-part" onClick={() => setShowModal(true)}>
+                        <div className="event">
+                            <div className="event-title">{event?.name}</div>
+                            <div className="event-desc">{event?.description}</div>
+                        </div>
+                    </div>}
+                {event && <EventDetailsModdal event={event} handleClose={handleClose} showModal={showModal} />}
             </div>
         </div>);
 };

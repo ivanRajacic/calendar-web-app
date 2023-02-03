@@ -1,4 +1,3 @@
-import { CSSProperties } from "react";
 import './empty-cell.css'
 
 interface Props extends React.PropsWithChildren {

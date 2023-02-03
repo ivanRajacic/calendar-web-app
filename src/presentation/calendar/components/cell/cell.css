@@ -8,7 +8,7 @@
 .cell-top-part {
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -31,17 +31,17 @@
 }
 
 .event {
+    padding-left: 10px;
     background-color: #efeeee;
     height: 100%;
     border-radius: 7px;
     display: grid;
     grid-template-rows: 1fr 1fr;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
 }
 
 .event-title {
-    padding-left: 5px;
     display: flex;
     align-items: center;
     justify-content: left;
@@ -50,9 +50,8 @@
 }
 
 .event-desc {
-    padding-left: 5px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: left;
     color: #39a2a5;
 }

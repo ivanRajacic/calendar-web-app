@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Calendar from './presentation/calendar/calendar';
