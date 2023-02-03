@@ -1,6 +1,9 @@
 import { startOfMonth, endOfMonth, differenceInDays, format, addMonths } from 'date-fns';
 import { parse } from 'date-fns/esm';
+import { useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { AxiosInstance } from '../../data/axios/axios-instance';
+import { Commit, GithubCommitInfo } from '../../data/models/commit.model';
 import { EventModel } from '../../data/models/event.model';
 import './calendar.css'
 import Cell from './components/cell/cell';
@@ -22,8 +25,28 @@ const Calendar = () => {
     const navigate = useNavigate();
     const params = useParams();
     const formatString = 'MM-yyyy';
+    const [commits, setAllCommits] = useState<GithubCommitInfo[]>();
+    var isDateValid = false;
 
     const currentDate = '/' + format(new Date(), formatString)
+
+    useEffect(() => {
+        AxiosInstance.get('/repos/ivanRajacic/calendar-web-app/commits')
+            .then(res => {
+                // console.log(res.data);
+                var git = res.data[0] as GithubCommitInfo;
+                console.log(git);
+                setAllCommits(res.data);
+            })
+            .catch(err => console.log(err))
+    }, [isDateValid]);
+
+    useEffect(() => {
+        if (commits !== undefined) {
+            console.log(commits[0].commit.author);
+
+        }
+    }, [commits]);
 
     if (params.date === undefined) {
         return (<Navigate to={currentDate} />);
@@ -34,6 +57,8 @@ const Calendar = () => {
     if (isNaN(date.getTime())) {
         return (<Navigate to={currentDate} />);
     }
+
+    isDateValid = true;
 
     const startDate = startOfMonth(date);
     const endDate = endOfMonth(date);
