@@ -1,12 +1,12 @@
 import { Modal } from "react-overlays";
 import './event-details-modal.css';
-import { GitCommitInfo } from '../../../../../data/models/commit.model';
+import { CommitInfo } from '../../../../../data/models/commit.model';
 import { format, parseISO } from "date-fns";
 
 interface Props extends React.PropsWithChildren {
     handleClose: () => void,
     showModal: boolean,
-    event: GitCommitInfo,
+    event: CommitInfo,
 };
 
 const EventDetailsModdal: React.FC<Props> = ({ handleClose, showModal, event }) => {
@@ -20,7 +20,7 @@ const EventDetailsModdal: React.FC<Props> = ({ handleClose, showModal, event }) 
                     <div className='close-button' onClick={handleClose}>X</div>
                 </div>
                 <div className="desc">
-                    <div className="event-date">{format(parseISO(event?.commit.author.date), 'dd-MM-yyyy')}</div>
+                    <div className="event-date">{format(event?.commit.author.date, 'dd-MM-yyyy')}</div>
                     <div className="author">{event?.commit.author.name}</div>
                 </div>
             </div>

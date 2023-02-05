@@ -1,4 +1,4 @@
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -10,15 +10,11 @@
 }
 
 .cell-top-part {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    text-overflow: ellipsis;
-}
-
-.cell-bottom-part {
-    padding: 5px;
 }
 
 .date {
@@ -35,13 +31,21 @@
     border-radius: 25px;
 }
 
+.cell-bottom-part {
+    position: relative;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+}
+
 .event {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
     height: 100%;
+    width: 100%;
+    justify-content: space-between;
     background-color: #efeeee;
     border-radius: 7px;
     cursor: pointer;

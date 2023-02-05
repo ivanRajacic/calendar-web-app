@@ -3,7 +3,7 @@ import { parse } from 'date-fns/esm';
 import { useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { AxiosInstance } from '../../data/axios/axios-instance';
-import { GitCommitInfo } from '../../data/models/commit.model';
+import { CommitInfo, CommitInfoDTO, toCommitInfo } from '../../data/models/commit.model';
 import './calendar.css'
 import Cell from './components/cell/cell';
 import EmptyCell from './components/empty-cell/empty-cell';
@@ -25,7 +25,7 @@ const Calendar = () => {
     const params = useParams();
     const formatString = 'MM-yyyy';
     const gitFormatString = "yyyy-MM-dd'T'HH:mm:ss'Z'";
-    const [commits, setCommits] = useState<GitCommitInfo[]>();
+    const [commits, setCommits] = useState<CommitInfo[]>();
 
     const currentDate = '/' + format(new Date(), formatString)
 
@@ -34,14 +34,11 @@ const Calendar = () => {
             { params: { sha: 'develop' }, })
             .then(res => {
                 if (res.data !== undefined) {
-                    const comms = res.data as GitCommitInfo[];
-                    const filteredCommits = comms.filter((e) =>
-                        parse(e.commit.author.date, gitFormatString, new Date()).getMonth() === date.getMonth()
+                    const comms = res.data as CommitInfoDTO[];
+                    const filteredCommitsDTO = comms.filter((commitInfo) =>
+                        parse(commitInfo.commit.author.date, gitFormatString, new Date()).getMonth() === date.getMonth()
                     );
-                    // let x = parse(filteredCommits[0].commit.author.date, gitFormatString, new Date());
-                    // console.log(filteredCommits[0]);
-                    // console.log(x);
-                    // console.log(x.getDay());
+                    const filteredCommits = filteredCommitsDTO.map((x) => toCommitInfo(x));
                     setCommits(filteredCommits);
                 }
             })
@@ -101,7 +98,10 @@ const Calendar = () => {
 
 
                         {Array.from({ length: prefixDays }).map((_, index) => (<Cell key={index} className='dates'></Cell>))}
-                        {Array.from({ length: numberOfDays }).map((_, index) => (<Cell key={index} index={index + 1} className='dates' event={commits?.filter((gitCommit) => parseISO(gitCommit.commit.author.date).getDay() - 2 === index + 1)[0]}></Cell>))}
+                        {Array.from({ length: numberOfDays }).map((_, index) => (
+                            <Cell key={index} index={index + 1} className='dates'
+                                event={commits?.filter((gitCommit) => gitCommit.commit.author.date.getDate() === index + 1)[0]}>
+                            </Cell>))}
                         {Array.from({ length: suffixDays }).map((_, index) => (<Cell key={index} className='dates'></Cell>))}
                     </div>
                 </div>
