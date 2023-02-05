@@ -1,7 +1,7 @@
 import { Modal } from "react-overlays";
 import './event-details-modal.css';
 import { CommitInfo } from '../../../../../data/models/commit.model';
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 
 interface Props extends React.PropsWithChildren {
     handleClose: () => void,

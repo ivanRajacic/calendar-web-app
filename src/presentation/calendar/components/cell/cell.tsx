@@ -2,7 +2,7 @@ import { useState } from "react";
 import './cell.css'
 import EventDetailsModdal from "./components/event-details-modal";
 import { CommitInfo } from "../../../../data/models/commit.model";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 
 
 interface Props extends React.PropsWithChildren {
