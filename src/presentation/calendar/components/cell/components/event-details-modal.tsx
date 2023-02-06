@@ -20,8 +20,8 @@ const EventDetailsModdal: React.FC<Props> = ({ handleClose, showModal, event }) 
                     <div className='close-button' onClick={handleClose}>X</div>
                 </div>
                 <div className="desc">
-                    <div className="event-date">{format(event?.commit.author.date, 'dd-MM-yyyy')}</div>
-                    <div className="author">{event?.commit.author.name}</div>
+                    <div className="event-date">Date: {format(event?.commit.author.date, 'dd-MM-yyyy')}</div>
+                    <div className="author">Author: {event?.commit.author.name}</div>
                 </div>
             </div>
         </Modal>
